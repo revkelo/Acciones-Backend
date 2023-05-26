@@ -1,5 +1,6 @@
 package co.edu.unbosque.proyecto.controller;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,11 +33,19 @@ public class UsuarioController {
 	@PostMapping(path = "/usuario")
 	public RedirectView add(@RequestParam String nombre, @RequestParam String email,
 			@RequestParam String contrasena) {
+		List<Usuario> all = (List<Usuario>) usrdao.findAll();
+		for (int i = 0; i < all.size(); i++) {
+			if (all.get(i).getEmail().equals(email)||all.get(i).getNombre().equals(nombre)) {
+				
+				return new RedirectView("/error.html");	
+				
+			}
+		}
 		Usuario uc = new Usuario();
 		uc.setNombre(nombre);
 		uc.setEmail(email);
 		uc.setContrasena(contrasena);
-		System.out.println(nombre);
+	
 		usrdao.save(uc);
 		return new RedirectView("/acciones.html");
 	}
@@ -44,11 +53,30 @@ public class UsuarioController {
 	@GetMapping("/usuario")
 	public ResponseEntity<Iterable<Usuario>> getAll() {
 		List<Usuario> all = (List<Usuario>) usrdao.findAll();
+
 		if (all.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).body(all);
 		}
 		return ResponseEntity.status(HttpStatus.FOUND).body(all);
 	}
+	
+
+	@GetMapping("/login")
+	public RedirectView login(@RequestParam String email,
+			@RequestParam String contrasena) {
+		List<Usuario> all = (List<Usuario>) usrdao.findAll();
+		for (int i = 0; i < all.size(); i++) {
+			if (all.get(i).getEmail().equals(email)&&all.get(i).getNombre().equals(contrasena)) {
+				
+				return new RedirectView("/acciones.html");
+				
+			}
+		}
+	
+		return new RedirectView("/error.html");
+	}
+	
+	
 
 	@GetMapping("/usuarioExistentes")
 	public ResponseEntity<String>  getExists() {
