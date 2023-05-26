@@ -36,7 +36,7 @@ public class UsuarioController {
 		uc.setNombre(nombre);
 		uc.setEmail(email);
 		uc.setContrasena(contrasena);
-		System.out.println(contrasena);
+		System.out.println(nombre);
 		usrdao.save(uc);
 		return new RedirectView("/acciones.html");
 	}
