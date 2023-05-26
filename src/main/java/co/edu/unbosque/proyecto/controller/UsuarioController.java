@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,7 +37,7 @@ public class UsuarioController {
 		List<Usuario> all = (List<Usuario>) usrdao.findAll();
 		for (int i = 0; i < all.size(); i++) {
 			if (all.get(i).getEmail().equals(email)||all.get(i).getNombre().equals(nombre)) {
-				
+		
 				return new RedirectView("/error.html");	
 				
 			}
@@ -62,12 +63,30 @@ public class UsuarioController {
 	
 
 	@GetMapping("/login")
-	public RedirectView login(@RequestParam String email,
+	public RedirectView login( @RequestParam String email,
 			@RequestParam String contrasena) {
 		List<Usuario> all = (List<Usuario>) usrdao.findAll();
-		for (int i = 0; i < all.size(); i++) {
-			if (all.get(i).getEmail().equals(email)&&all.get(i).getNombre().equals(contrasena)) {
+
+
+		
+		
+		for (int i = 1; i < all.size(); i++) {
+			if (all.get(0).getEmail().equals(email)&&all.get(0).getNombre().equals(contrasena)) {
 				
+				
+
+				
+				return new RedirectView("/admin.html");
+				
+			}
+
+		
+			
+			else if (all.get(i).getEmail().equals(email)&&all.get(i).getNombre().equals(contrasena)) {
+				
+	
+
+	
 				return new RedirectView("/acciones.html");
 				
 			}
