@@ -54,17 +54,96 @@
   <div class="container content">
     <h1>Administrador</h1>
     <p>En esta página podrás administrar las acciones, incluyendo opciones para listar, actualizar, eliminar y agregar
-      nuevas acciones.</p>
+    </p>
   </div>
 
-  <div class="container" id="acciones">
-    <h2>Acciones</h2>
 
-    <canvas id="gamestop"></canvas>
-    <script src="./js/chartScript.js"></script>
-    <div id="cuadro"></div>
-    <p>Precio Acción: $4 dólares</p>
+  <div class="container">
+    <div class="row form-register">
+      <!-- Formulario de Medicina -->
+      <div class="form-register">
+        <div class="card">
+          <div class="card-header">
+            <h3>Listar</h3>
+          </div>
+          <div class="card-body">
+            <form enctype="multipart/form-data" name="Formulario ServeletGuardar" method="get" action="/UEB1/listar">
+
+              <button type="submit" class="btn btn-outline-success">Listar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Formulario de todas las carreras -->
+      <div class="form-register">
+        <div class="card">
+          <div class="card-header">
+            <h3>Listar Acciones Generales</h3>
+          </div>
+          <div class="card-body">
+            <form enctype="multipart/form-data" name="Formulario ServeletGuardar" method="get" action="/UEB1/tabla">
+              <input type="hidden" name="_method" value="GET">
+
+              <button type="submit" class="btn btn-outline-success">Listar
+                todas las carreras</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row form-register">
+      <div class="">
+        <!-- Formulario de Eliminar -->
+        <div class="card">
+          <div class="card-header">
+            <h3>Usuario Eliminar</h3>
+          </div>
+          <div class="card-body">
+            <form class="form" action="/UEB1/tabla" method="POST">
+              <input type="hidden" name="_method" value="DELETE">
+              <div class="controls">
+                <label for="inputIdEliminar">Id</label> <input type="text" class="form-control" id="inputNobreEliminar"
+                  name="inputNobreEliminar">
+              </div>
+              <button type="submit" class="btn btn-outline-success">Eliminar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 form-register">
+        <!-- Formulario de Actualizar -->
+        <div class="card">
+          <div class="card-header">
+            <h3>Actualizar</h3>
+          </div>
+          <div class="card-body">
+            <form class="form" action="/UEB1/tabla" method="post">
+              <input type="hidden" name="_method" value="PUT">
+              <div class="controls">
+                <label for="inputIdActualizar">Ingrese el nombre para buscar los datos:</label> <input type="text"
+                  class="form-control" id="inputIdActualizar" name="inputIdActualizar" required>
+              </div>
+              <div class="controls">
+                <label for="opcactualizar">Ingrese el colegio para actualizar:</label> <input type="text"
+                  class="form-control" id="opcactualizar" name="opcactualizar" required>
+
+              </div>
+              <button type="submit" class="btn btn-outline-success">Actualizar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
+
+
+
+
+
 
   <!-- Footer -->
   <footer class="footer">
