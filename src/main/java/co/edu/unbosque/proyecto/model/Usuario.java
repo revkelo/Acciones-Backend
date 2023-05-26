@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 @Entity
 public class Usuario {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer id;
 	private String nombre;
 	private String email;

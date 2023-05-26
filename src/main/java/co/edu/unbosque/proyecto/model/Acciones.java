@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 @Entity
 public class Acciones {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private Integer idCliente;
 	private Integer accionesCompradas;
