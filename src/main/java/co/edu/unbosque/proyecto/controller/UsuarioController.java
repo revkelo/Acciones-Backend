@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.view.RedirectView;
 
 import co.edu.unbosque.proyecto.model.Usuario;
 import co.edu.unbosque.proyecto.repository.UsuarioRepository;
@@ -26,16 +27,18 @@ import co.edu.unbosque.proyecto.repository.UsuarioRepository;
 public class UsuarioController {
 	@Autowired
 	private UsuarioRepository usrdao;
+	
 
 	@PostMapping(path = "/usuario")
-	public ResponseEntity<String> add(@RequestParam String nombre, @RequestParam String email,
+	public RedirectView add(@RequestParam String nombre, @RequestParam String email,
 			@RequestParam String contrasena) {
 		Usuario uc = new Usuario();
 		uc.setNombre(nombre);
 		uc.setEmail(email);
 		uc.setContrasena(contrasena);
+		System.out.println(contrasena);
 		usrdao.save(uc);
-		return ResponseEntity.status(HttpStatus.CREATED).body("CREATED (CODE 201)\n");
+		return new RedirectView("/acciones.html");
 	}
 
 	@GetMapping("/usuario")

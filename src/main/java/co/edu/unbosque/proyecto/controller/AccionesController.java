@@ -28,11 +28,11 @@ public class AccionesController {
 	private AccionesRepository usrdao;
 
 	@PostMapping(path = "/acciones")
-	public ResponseEntity<String> add(@RequestParam Integer id_cliente, Integer acciones_compradas, String nombre_empresa) {
+	public ResponseEntity<String> add(@RequestParam Integer id_cliente, @RequestParam  Integer acciones_compradas, @RequestParam  String nombre_empresa) {
 		Acciones uc = new Acciones();
-		uc.setId_cliente(id_cliente);
-		uc.setAcciones_compradas(acciones_compradas);
-		uc.setNombre_empresa(nombre_empresa);
+		uc.setIdCliente(id_cliente);
+		uc.setAccionesCompradas(acciones_compradas);
+		uc.setNombreEmpresa(nombre_empresa);
 		usrdao.save(uc);
 		return ResponseEntity.status(HttpStatus.CREATED).body("CREATED (CODE 201)\n");
 	}
