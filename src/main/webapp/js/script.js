@@ -108,3 +108,5 @@ newChartForm.addEventListener('submit', function(event) {
 
   chartNameInput.value = '';
 });
+
+
