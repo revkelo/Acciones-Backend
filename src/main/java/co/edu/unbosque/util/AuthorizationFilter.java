@@ -1,13 +1,17 @@
 package co.edu.unbosque.util;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.ServletContextRequestLoggingFilter;
 
+import co.edu.unbosque.proyecto.controller.UsuarioController;
+import co.edu.unbosque.proyecto.model.Usuario;
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -16,29 +20,39 @@ import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-
 @Component
 @Order(1)
 public class AuthorizationFilter implements Filter {
 
-	private static final Logger LOG = LoggerFactory.getLogger(ServletContextRequestLoggingFilter.class);
+	@Autowired
+	private UsuarioController uc ;
+	private static final Logger LOG = LoggerFactory.getLogger(AuthorizationFilter.class);
+
+
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
-        HttpServletResponse httpResponse = (HttpServletResponse) response;
+		HttpServletResponse httpResponse = (HttpServletResponse) response;
+		ArrayList<Usuario> lista = (ArrayList<Usuario>) uc.getList();
 
-        // Verifica si el usuario ha iniciado sesión
-        boolean isLoggedIn = false; // Lógica para verificar si el usuario ha iniciado sesión
 
-        if (isLoggedIn) {
-            // El usuario ha iniciado sesión, permite el acceso a la siguiente solicitud
-            chain.doFilter(request, response);
-        } else {
-            // El usuario no ha iniciado sesión, redirige a otra página
-            httpResponse.sendRedirect("/login.html"); // Cambia la ruta según tu estructura de archivos
-        }
-		
+		String requestURI = httpRequest.getRequestURI();
+		boolean isLoginRequest = requestURI.contains("/login");
+		System.out.println(isLoginRequest);
+		System.out.println(lista.size());
+
+		if (isLoginRequest) {
+			// El usuario ha iniciado sesión o es una solicitud de inicio de sesión, permite
+			// el acceso
+			chain.doFilter(request, response);
+		} else {
+			LOG.info("Acceso no autorizado");
+			// El usuario no ha iniciado sesión y no es una solicitud de inicio de sesión,
+			// redirige a otra página
+			httpResponse.sendRedirect("/login.html"); // Cambia la ruta según tu estructura de archivos
+		}
+
 	}
 
 }

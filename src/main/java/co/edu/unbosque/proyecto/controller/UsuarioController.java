@@ -36,6 +36,7 @@ public class UsuarioController {
 	private ArrayList<Usuario> list = new ArrayList<Usuario>();
 
 
+
 	@PostMapping(path = "/usuario")
 	public RedirectView add(@RequestParam String nombre, @RequestParam String email, @RequestParam String contrasena) {
 		List<Usuario> all = (List<Usuario>) usrdao.findAll();
