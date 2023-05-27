@@ -34,24 +34,24 @@ public class AuthorizationFilter implements Filter {
 			throws IOException, ServletException {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
-		ArrayList<Usuario> lista = (ArrayList<Usuario>) uc.getList();
+
 
 
 		String requestURI = httpRequest.getRequestURI();
 		boolean isLoginRequest = requestURI.contains("/login");
 		System.out.println(isLoginRequest);
-		System.out.println(lista.size());
 
-		if (isLoginRequest) {
+
+//		if (isLoginRequest) {
 			// El usuario ha iniciado sesión o es una solicitud de inicio de sesión, permite
 			// el acceso
 			chain.doFilter(request, response);
-		} else {
-			LOG.info("Acceso no autorizado");
-			// El usuario no ha iniciado sesión y no es una solicitud de inicio de sesión,
-			// redirige a otra página
-			httpResponse.sendRedirect("/login.html"); // Cambia la ruta según tu estructura de archivos
-		}
+//		} else {
+//			LOG.info("Acceso no autorizado");
+//			// El usuario no ha iniciado sesión y no es una solicitud de inicio de sesión,
+//			// redirige a otra página
+//			httpResponse.sendRedirect("/login.html"); // Cambia la ruta según tu estructura de archivos
+//		}
 
 	}
 
