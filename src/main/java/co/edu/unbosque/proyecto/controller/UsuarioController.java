@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.edu.unbosque.proyecto.model.Graficas;
+import co.edu.unbosque.proyecto.model.Empresa;
 import co.edu.unbosque.proyecto.model.Usuario;
 import co.edu.unbosque.proyecto.repository.UsuarioRepository;
 
