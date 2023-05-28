@@ -47,15 +47,43 @@ public class UsuarioController {
 		return ResponseEntity.status(HttpStatus.FOUND).body(all);
 	}
 
+
+	
+	@GetMapping("/login")
+	public ResponseEntity<Usuario> login(@RequestParam String email, @RequestParam String contrasena) {
+	    List<Usuario> all = (List<Usuario>) usrdao.findAll();
+
+	    Usuario foundUsuario = null;
+
+	    if (all.get(0).getEmail().equals(email) && all.get(0).getContrasena().equals(contrasena)) {
+			// admin
+	        foundUsuario = all.get(0);
+		}
+	    
+		for (int i = 1; i < all.size(); i++) {
+	        if (all.get(i).getEmail().equals(email) && all.get(i).getContrasena().equals(contrasena)) {
+	            foundUsuario = all.get(i);
+	            break;
+	        }
+	    }
+
+	    if (foundUsuario != null) {
+	        return ResponseEntity.status(HttpStatus.ACCEPTED).body(foundUsuario);
+	    } else {
+	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+	    }
+	}
+
+
 	@GetMapping("/usuarioExistentes")
-	public ResponseEntity<String>  getExists() {
+	public ResponseEntity<String> getExists() {
 		List<Usuario> all = (List<Usuario>) usrdao.findAll();
 		if (all.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.FOUND).body(null);
 		}
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(all.size()+"Cantidad de marikas");
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(all.size() + "Cantidad de marikas");
 	}
-	
+
 	@GetMapping("/usuario/{id}")
 	public ResponseEntity<Usuario> getOne(@PathVariable Integer id) {
 		Optional<Usuario> op = usrdao.findById(id);

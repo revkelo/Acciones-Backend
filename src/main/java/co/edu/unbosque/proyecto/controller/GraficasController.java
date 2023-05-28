@@ -41,7 +41,7 @@ public class GraficasController {
 	@GetMapping("/grafica")
 	public ResponseEntity<List<Graficas>> mostrarTodo() {
 		List<Graficas> lista = usrdao.findAll();
-		System.out.println("VIDA HPTA");
+
 		if (lista.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
 		}
