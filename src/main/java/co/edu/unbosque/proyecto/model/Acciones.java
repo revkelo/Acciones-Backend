@@ -13,7 +13,7 @@ public class Acciones {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	private Integer idCliente;
-	private Integer accionesCompradas;
+	private Integer acciones;
 	private String nombreEmpresa;
 	private Date fecha;
 	private String estado;
@@ -98,20 +98,27 @@ public class Acciones {
 	}
 
 
-	/**
-	 * @return the accionesCompradas
-	 */
-	public Integer getAccionesCompradas() {
-		return accionesCompradas;
-	}
+
 
 
 	/**
-	 * @param accionesCompradas the accionesCompradas to set
+	 * @return the acciones
 	 */
-	public void setAccionesCompradas(Integer accionesCompradas) {
-		this.accionesCompradas = accionesCompradas;
+	public Integer getAcciones() {
+		return acciones;
 	}
+
+
+
+
+	/**
+	 * @param acciones the acciones to set
+	 */
+	public void setAcciones(Integer acciones) {
+		this.acciones = acciones;
+	}
+
+
 
 
 	/**

@@ -30,10 +30,10 @@ public class AccionesController {
 	private AccionesRepository usrdao;
 
 	@PostMapping(path = "/acciones")
-	public ResponseEntity<String> add(@RequestParam Integer id_cliente, @RequestParam  Integer acciones_compradas, @RequestParam  String nombre_empresa, @RequestParam Date fecha, @RequestParam String estado) {
+	public ResponseEntity<String> add(@RequestParam Integer id_cliente, @RequestParam  Integer acciones, @RequestParam  String nombre_empresa, @RequestParam Date fecha, @RequestParam String estado) {
 		Acciones uc = new Acciones();
 		uc.setIdCliente(id_cliente);
-		uc.setAccionesCompradas(acciones_compradas);
+		uc.setAcciones(acciones);
 		uc.setNombreEmpresa(nombre_empresa);
 		uc.setFecha(fecha);
 		uc.setEstado(estado);
