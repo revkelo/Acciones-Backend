@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.unbosque.proyecto.model.Acciones;
+import co.edu.unbosque.proyecto.model.Usuario;
 import co.edu.unbosque.proyecto.repository.AccionesRepository;
 
 @CrossOrigin(origins = "*")
@@ -30,20 +31,21 @@ public class AccionesController {
 	@PostMapping(path = "/acciones")
 	public ResponseEntity<String> add(@RequestParam Integer id_cliente, Integer acciones_compradas, String nombre_empresa) {
 		Acciones uc = new Acciones();
-		uc.setId_cliente(id_cliente);
-		uc.setAcciones_compradas(acciones_compradas);
-		uc.setNombre_empresa(nombre_empresa);
+		uc.setIdCliente(id_cliente);
+		uc.setAccionesCompradas(acciones_compradas);
+		uc.setNombreEmpresa(nombre_empresa);
 		usrdao.save(uc);
 		return ResponseEntity.status(HttpStatus.CREATED).body("CREATED (CODE 201)\n");
 	}
 
 	@GetMapping("/acciones")
-	public ResponseEntity<Iterable<Acciones>> getAll() {
-		List<Acciones> all = (List<Acciones>) usrdao.findAll();
-		if (all.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.NO_CONTENT).body(all);
+	public ResponseEntity<List<Acciones>> mostrarTodo() {
+		List<Acciones> lista = usrdao.findAll();
+
+		if (lista.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
 		}
-		return ResponseEntity.status(HttpStatus.FOUND).body(all);
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(lista);
 	}
 
 

@@ -10,37 +10,13 @@ public class Acciones {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	private Integer id_cliente;
-	private Integer acciones_compradas;
-	private String nombre_empresa;
+	private Integer idCliente;
+	private Integer accionesCompradas;
+	private String nombreEmpresa;
 
 
 	public Acciones() {
 		// TODO Auto-generated constructor stub
-	}
-
-
-	public Acciones(Integer id, Integer acciones_compradas, String nombre_empresa) {
-		super();
-		this.id = id;
-		this.acciones_compradas = acciones_compradas;
-		this.nombre_empresa = nombre_empresa;
-	}
-
-
-	/**
-	 * @return the id_cliente
-	 */
-	public Integer getId_cliente() {
-		return id_cliente;
-	}
-
-
-	/**
-	 * @param id_cliente the id_cliente to set
-	 */
-	public void setId_cliente(Integer id_cliente) {
-		this.id_cliente = id_cliente;
 	}
 
 
@@ -61,37 +37,53 @@ public class Acciones {
 
 
 	/**
-	 * @return the acciones_compradas
+	 * @return the idCliente
 	 */
-	public Integer getAcciones_compradas() {
-		return acciones_compradas;
+	public Integer getIdCliente() {
+		return idCliente;
 	}
 
 
 	/**
-	 * @param acciones_compradas the acciones_compradas to set
+	 * @param idCliente the idCliente to set
 	 */
-	public void setAcciones_compradas(Integer acciones_compradas) {
-		this.acciones_compradas = acciones_compradas;
+	public void setIdCliente(Integer idCliente) {
+		this.idCliente = idCliente;
 	}
 
 
 	/**
-	 * @return the nombre_empresa
+	 * @return the accionesCompradas
 	 */
-	public String getNombre_empresa() {
-		return nombre_empresa;
+	public Integer getAccionesCompradas() {
+		return accionesCompradas;
 	}
 
 
 	/**
-	 * @param nombre_empresa the nombre_empresa to set
+	 * @param accionesCompradas the accionesCompradas to set
 	 */
-	public void setNombre_empresa(String nombre_empresa) {
-		this.nombre_empresa = nombre_empresa;
+	public void setAccionesCompradas(Integer accionesCompradas) {
+		this.accionesCompradas = accionesCompradas;
 	}
-	
-	
+
+
+	/**
+	 * @return the nombreEmpresa
+	 */
+	public String getNombreEmpresa() {
+		return nombreEmpresa;
+	}
+
+
+	/**
+	 * @param nombreEmpresa the nombreEmpresa to set
+	 */
+	public void setNombreEmpresa(String nombreEmpresa) {
+		this.nombreEmpresa = nombreEmpresa;
+	}
+
+
 }
 
  
