@@ -30,12 +30,19 @@ public class EmpresasController {
 	private EmpresasRepository usrdao;
 
 	@PostMapping(path = "/grafica")
-	public ResponseEntity<String> add(@RequestParam String nombre,@RequestParam int precioAccion) {
+	public ResponseEntity<Boolean> add(@RequestParam String nombre, @RequestParam int precioAccion) {
+		List<Empresa> lista = usrdao.findAll();
+		for (int i = 0; i < lista.size(); i++) {
+			if (lista.get(i).getNombre().equals(nombre)) {
+				return ResponseEntity.ok(false);
+			}
+		}
+
 		Empresa uc = new Empresa();
 		uc.setNombre(nombre);
 		uc.setPrecioAccion(precioAccion);
 		usrdao.save(uc);
-		return ResponseEntity.status(HttpStatus.CREATED).body("CREATED (CODE 201)\n");
+		return ResponseEntity.ok(true);
 	}
 
 	@GetMapping("/grafica")
@@ -48,6 +55,38 @@ public class EmpresasController {
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(lista);
 	}
 
+	@DeleteMapping("/grafica/{id}")
+	public ResponseEntity<String> delete(@PathVariable Integer id) {
+		Optional<Empresa> op = usrdao.findById(id);
+		if (!op.isPresent()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("");
+		}
+		usrdao.deleteById(id);
+		return ResponseEntity.status(HttpStatus.FOUND).body("Deleted");
+	}
 
+	@PutMapping("/grafica")
+	public ResponseEntity<Boolean> update(@RequestParam String nombre, @RequestParam int precioAccion,
+			@RequestParam Integer id) {
+
+		Optional<Empresa> op = usrdao.findById(id);
+		if (!op.isPresent()) {
+			return ResponseEntity.ok(false);
+		}
+		return op.map(usr -> {
+			usr.setNombre(nombre);
+			usr.setPrecioAccion(precioAccion);
+
+			usrdao.save(usr);
+			return ResponseEntity.ok(true);
+		}).orElseGet(() -> {
+			Empresa nuevo = new Empresa();
+			nuevo.setId(id);
+			nuevo.setNombre(nombre);
+			nuevo.setPrecioAccion(precioAccion);
+			usrdao.save(nuevo);
+			return ResponseEntity.ok(true);
+		});
+	}
 
 }
