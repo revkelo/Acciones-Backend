@@ -26,6 +26,18 @@ public class Acciones {
 
 	
 	
+	public Acciones(Integer idCliente, Integer acciones, String nombreEmpresa, Date fecha, String estado) {
+		super();
+		this.idCliente = idCliente;
+		this.acciones = acciones;
+		this.nombreEmpresa = nombreEmpresa;
+		this.fecha = fecha;
+		this.estado = estado;
+	}
+
+
+
+
 	/**
 	 * @return the fecha
 	 */

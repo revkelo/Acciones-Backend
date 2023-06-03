@@ -33,7 +33,7 @@ public class UsuarioController {
 			@RequestParam String contrasena) {
 
 		List<Usuario> all = (List<Usuario>) usrdao.findAll();
-	
+
 		for (int i = 0; i < all.size(); i++) {
 			if (all.get(i).getNombre().equals(nombre) && all.get(i).getEmail().equals(email)
 					&& all.get(i).getContrasena().equals(contrasena)) {
@@ -41,13 +41,12 @@ public class UsuarioController {
 			}
 		}
 
-
 		Usuario uc = new Usuario();
 		uc.setNombre(nombre);
 		uc.setEmail(email);
 		uc.setContrasena(contrasena);
 		usrdao.save(uc);
-	
+
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(uc);
 	}
 
@@ -60,7 +59,6 @@ public class UsuarioController {
 		}
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(lista);
 	}
-
 
 	@GetMapping("/login")
 	public ResponseEntity<Usuario> login(@RequestParam String email, @RequestParam String contrasena) {
@@ -116,23 +114,28 @@ public class UsuarioController {
 	}
 
 	@PutMapping("/usuario/{id}")
-	public ResponseEntity<String> update(@RequestBody Usuario nuevo, @PathVariable Integer id) {
+	public ResponseEntity<Boolean> update(@RequestParam String nombre, @RequestParam String email,
+			@RequestParam String contrasena, @PathVariable Integer id) {
 
 		Optional<Usuario> op = usrdao.findById(id);
 		if (!op.isPresent()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("");
+			return ResponseEntity.ok(false);
 		}
 		return op.map(usr -> {
-			usr.setNombre(nuevo.getNombre());
-			usr.setEmail(nuevo.getEmail());
-			usr.setContrasena(nuevo.getContrasena());
+			usr.setNombre(nombre);
+			usr.setEmail(email);
+			usr.setContrasena(contrasena);
 
 			usrdao.save(usr);
-			return ResponseEntity.status(HttpStatus.ACCEPTED).body("Data updated");
+			return ResponseEntity.ok(true);
 		}).orElseGet(() -> {
+			Usuario nuevo = new Usuario();
 			nuevo.setId(id);
+			nuevo.setNombre(nombre);
+			nuevo.setEmail(email);
+			nuevo.setContrasena(contrasena);
 			usrdao.save(nuevo);
-			return ResponseEntity.status(HttpStatus.CREATED).body("Data created");
+			return ResponseEntity.ok(true);
 		});
 	}
 

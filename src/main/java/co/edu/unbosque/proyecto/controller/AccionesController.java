@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.unbosque.proyecto.model.Acciones;
+import co.edu.unbosque.proyecto.model.Empresa;
 import co.edu.unbosque.proyecto.model.Usuario;
 import co.edu.unbosque.proyecto.repository.AccionesRepository;
 
@@ -30,15 +31,17 @@ public class AccionesController {
 	private AccionesRepository usrdao;
 
 	@PostMapping(path = "/acciones")
-	public ResponseEntity<String> add(@RequestParam Integer id_cliente, @RequestParam  Integer acciones, @RequestParam  String nombre_empresa, @RequestParam Date fecha, @RequestParam String estado) {
+	public ResponseEntity<Boolean> add(@RequestParam Integer idCliente, @RequestParam Integer acciones,
+			@RequestParam String nombreEmpresa, @RequestParam Date fecha, @RequestParam String estado) {
+
 		Acciones uc = new Acciones();
-		uc.setIdCliente(id_cliente);
+		uc.setIdCliente(idCliente);
 		uc.setAcciones(acciones);
-		uc.setNombreEmpresa(nombre_empresa);
+		uc.setNombreEmpresa(nombreEmpresa);
 		uc.setFecha(fecha);
 		uc.setEstado(estado);
 		usrdao.save(uc);
-		return ResponseEntity.status(HttpStatus.CREATED).body("CREATED (CODE 201)\n");
+		return ResponseEntity.ok(true);
 	}
 
 	@GetMapping("/acciones")
@@ -52,18 +55,44 @@ public class AccionesController {
 	}
 
 
+
 	
-	@GetMapping("/acciones/{id}")
-	public ResponseEntity<Acciones> getOne(@PathVariable Integer id) {
+	@DeleteMapping("/acciones/{id}")
+	public ResponseEntity<String> delete(@PathVariable Integer id) {
 		Optional<Acciones> op = usrdao.findById(id);
-		if (op.isPresent()) {
-			return ResponseEntity.status(HttpStatus.FOUND).body(op.get());
+		if (!op.isPresent()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("");
 		}
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+		usrdao.deleteById(id);
+		return ResponseEntity.status(HttpStatus.FOUND).body("Deleted");
 	}
 	
+	@PutMapping("/acciones/{id}")
+	public ResponseEntity<Boolean> update(@RequestParam Integer idCliente, @RequestParam Integer acciones,
+			@RequestParam String nombreEmpresa, @RequestParam Date fecha, @RequestParam String estado, @PathVariable Integer id) {
 
+		Optional<Acciones> op = usrdao.findById(id);
+		if (!op.isPresent()) {
+			return ResponseEntity.ok(false);
+		}
+		return op.map(usr -> {
+			usr.setIdCliente(idCliente);
+			usr.setAcciones(acciones);
+			usr.setNombreEmpresa(nombreEmpresa);
+			usr.setFecha(fecha);
+			usr.setEstado(estado);
 
-
-
+			usrdao.save(usr);
+			return ResponseEntity.ok(true);
+		}).orElseGet(() -> {
+			Acciones uc = new Acciones();
+			uc.setIdCliente(idCliente);
+			uc.setAcciones(acciones);
+			uc.setNombreEmpresa(nombreEmpresa);
+			uc.setFecha(fecha);
+			uc.setEstado(estado);
+			usrdao.save(uc);
+			return ResponseEntity.ok(true);
+		});
+	}
 }
