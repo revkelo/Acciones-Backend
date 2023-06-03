@@ -6,16 +6,34 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Graficas {
+public class Empresa {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	private String nombre;
+	private int precioAccion;
 	
-	public Graficas() {
+	public Empresa() {
 		// TODO Auto-generated constructor stub
 	}
+
+	
+	/**
+	 * @return the precioAccion
+	 */
+	public int getPrecioAccion() {
+		return precioAccion;
+	}
+
+
+	/**
+	 * @param precioAccion the precioAccion to set
+	 */
+	public void setPrecioAccion(int precioAccion) {
+		this.precioAccion = precioAccion;
+	}
+
 
 	/**
 	 * @return the id

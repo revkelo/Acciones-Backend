@@ -1,5 +1,6 @@
 package co.edu.unbosque.proyecto.controller;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,11 +30,13 @@ public class AccionesController {
 	private AccionesRepository usrdao;
 
 	@PostMapping(path = "/acciones")
-	public ResponseEntity<String> add(@RequestParam Integer id_cliente, Integer acciones_compradas, String nombre_empresa) {
+	public ResponseEntity<String> add(@RequestParam Integer id_cliente, @RequestParam  Integer acciones, @RequestParam  String nombre_empresa, @RequestParam Date fecha, @RequestParam String estado) {
 		Acciones uc = new Acciones();
 		uc.setIdCliente(id_cliente);
-		uc.setAccionesCompradas(acciones_compradas);
+		uc.setAcciones(acciones);
 		uc.setNombreEmpresa(nombre_empresa);
+		uc.setFecha(fecha);
+		uc.setEstado(estado);
 		usrdao.save(uc);
 		return ResponseEntity.status(HttpStatus.CREATED).body("CREATED (CODE 201)\n");
 	}
