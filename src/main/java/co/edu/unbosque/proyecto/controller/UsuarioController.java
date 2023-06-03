@@ -1,5 +1,6 @@
 package co.edu.unbosque.proyecto.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,13 +28,14 @@ import co.edu.unbosque.proyecto.repository.UsuarioRepository;
 public class UsuarioController {
 	@Autowired
 	private UsuarioRepository usrdao;
+	private ArrayList<Usuario> inicio = new ArrayList<Usuario>();
 
 	@PostMapping(path = "/usuario")
 	public ResponseEntity<Usuario> add(@RequestParam String nombre, @RequestParam String email,
 			@RequestParam String contrasena) {
 
 		List<Usuario> all = (List<Usuario>) usrdao.findAll();
-	
+
 		for (int i = 0; i < all.size(); i++) {
 			if (all.get(i).getNombre().equals(nombre) && all.get(i).getEmail().equals(email)
 					&& all.get(i).getContrasena().equals(contrasena)) {
@@ -41,13 +43,12 @@ public class UsuarioController {
 			}
 		}
 
-
 		Usuario uc = new Usuario();
 		uc.setNombre(nombre);
 		uc.setEmail(email);
 		uc.setContrasena(contrasena);
 		usrdao.save(uc);
-	
+
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(uc);
 	}
 
@@ -61,6 +62,15 @@ public class UsuarioController {
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(lista);
 	}
 
+	@GetMapping("/cerrar")
+	public ResponseEntity<Boolean> cerrar(){
+		
+		
+		
+		return null;
+		
+	
+	}
 
 	@GetMapping("/login")
 	public ResponseEntity<Usuario> login(@RequestParam String email, @RequestParam String contrasena) {
@@ -71,11 +81,13 @@ public class UsuarioController {
 		if (all.get(0).getEmail().equals(email) && all.get(0).getContrasena().equals(contrasena)) {
 			// admin
 			foundUsuario = all.get(0);
+			inicio.add(foundUsuario);
 		}
 
 		for (int i = 1; i < all.size(); i++) {
 			if (all.get(i).getEmail().equals(email) && all.get(i).getContrasena().equals(contrasena)) {
 				foundUsuario = all.get(i);
+				inicio.add(foundUsuario);
 				break;
 			}
 		}
