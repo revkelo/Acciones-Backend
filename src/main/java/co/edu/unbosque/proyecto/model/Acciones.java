@@ -17,6 +17,7 @@ public class Acciones {
 	private String nombreEmpresa;
 	private Date fecha;
 	private String estado;
+	private int valor;
 
 
 	public Acciones() {
@@ -33,6 +34,26 @@ public class Acciones {
 		this.nombreEmpresa = nombreEmpresa;
 		this.fecha = fecha;
 		this.estado = estado;
+	}
+
+
+
+
+	/**
+	 * @return the valor
+	 */
+	public int getValor() {
+		return valor;
+	}
+
+
+
+
+	/**
+	 * @param valor the valor to set
+	 */
+	public void setValor(int valor) {
+		this.valor = valor;
 	}
 
 
