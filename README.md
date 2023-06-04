@@ -24,8 +24,8 @@ Antes de comenzar a trabajar con este proyecto, asegúrate de tener instalados l
    <img src="./img/2.PNG" width="800" />
     <img src="./img/3.PNG" width="800" />
     <img src="./img/4.PNG" width="800" />
-    <img src="./img/5.PNG" width="800" />
-      <img src="./img/6.PNG" width="800" />
+
+
 </p>
 
 
