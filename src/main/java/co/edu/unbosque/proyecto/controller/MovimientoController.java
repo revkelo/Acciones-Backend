@@ -56,33 +56,20 @@ public class MovimientoController {
 	public ResponseEntity<List<Tendencia>> tendencia() {
 		List<Movimiento> lista = usrdao.findAll();
 		List<Empresa> lista1 = emprdao.findAll();
-
 		Map<String, List<Movimiento>> movimientosPorEmpresa = new HashMap<>();
-
 		for (Movimiento movimiento : lista) {
 			String nombreEmpresa = movimiento.getNombreEmpresa();
-
-
 			List<Movimiento> movimientos = movimientosPorEmpresa.getOrDefault(nombreEmpresa, new ArrayList<>());
-
-			
 			movimientos.add(movimiento);
-
-	
 			movimientosPorEmpresa.put(nombreEmpresa, movimientos);
 		}
 
-
 		List<Tendencia> tendencias = new ArrayList<>();
-
 
 		for (Empresa empresa : lista1) {
 			String nombreEmpresa = empresa.getNombre();
-
-	
 			List<Movimiento> movimientos = movimientosPorEmpresa.getOrDefault(nombreEmpresa, new ArrayList<>());
 
-		
 			double promedio = 0.0;
 			int cantidadMovimientos = movimientos.size();
 			if (cantidadMovimientos > 0) {
