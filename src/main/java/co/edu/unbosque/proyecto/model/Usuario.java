@@ -18,6 +18,13 @@ public class Usuario {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public Usuario(String nombre, String email, String contrasena) {
+		super();
+		this.nombre = nombre;
+		this.email = email;
+		this.contrasena = contrasena;
+	}
+
 	public Usuario(Integer id, String nombre, String email, String contrasena) {
 		super();
 		this.id = id;

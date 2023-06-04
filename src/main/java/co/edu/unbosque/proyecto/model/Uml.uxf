@@ -1,0 +1,672 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1.0">
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2541</x>
+      <y>973</y>
+      <w>287</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>AccionesRepository
+Package::co.edu.unbosque.proyecto.repository
+
+--
+
+--
+
++ findById(id: Integer): Optional&lt;Acciones&gt;
++ findAll(): List&lt;Acciones&gt;
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>917</x>
+      <y>623</y>
+      <w>336</w>
+      <h>175</h>
+    </coordinates>
+    <panel_attributes>Tendencia
+Package::co.edu.unbosque.proyecto.model
+
+--
+- nombreEmpresa: String
+- promedio: double
+- movimientos: int
+--
++ Tendencia()
++ Tendencia(nombreEmpresa: String, promedio: double, movimientos: int)
++ getMovimientos(): int
++ setMovimientos(movimientos: int): void
++ getNombreEmpresa(): String
++ setNombreEmpresa(nombreEmpresa: String): void
++ getPromedio(): double
++ setPromedio(promedio: double): void
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>973</x>
+      <y>826</y>
+      <w>280</w>
+      <h>203</h>
+    </coordinates>
+    <panel_attributes>Movimiento
+Package::co.edu.unbosque.proyecto.model
+
+--
+- id: Integer
+- nombreEmpresa: String
+- valor: int
+
+--
++ Movimiento()
++ Movimiento(id: Integer, nombreEmpresa: String, valor: int)
++ Movimiento(nombreEmpresa: String, valor: int)
++ getId(): Integer
++ setId(id: Integer): void
++ getNombreEmpresa(): String
++ setNombreEmpresa(nombreEmpresa: String): void
++ getValor(): int
++ setValor(valor: int): void
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1001</x>
+      <y>1085</y>
+      <w>252</w>
+      <h>301</h>
+    </coordinates>
+    <panel_attributes>Usuario
+Package::co.edu.unbosque.proyecto.model
+
+--
+- id: Integer                  
+- nombre: String               
+- email: String                
+- contrasena: String 
+--
++ Usuario()                    
++ Usuario(nombre: String,      
+  email: String, contrasena:  
+  String)                     
++ Usuario(id: Integer,         
+  nombre: String, email:      
+  String, contrasena: String) 
++ getId(): Integer             
++ setId(id: Integer): void     
++ getNombre(): String          
++ setNombre(nombre: String):   
+  void                         
++ getEmail(): String           
++ setEmail(email: String):     
+  void                         
++ getContrasena(): String      
++ setContrasena(contrasena:    
+  String): void  
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>322</x>
+      <y>700</y>
+      <w>231</w>
+      <h>196</h>
+    </coordinates>
+    <panel_attributes>Empresa
+Package::co.edu.unbosque.proyecto.model
+
+--
+- id: Integer
+- nombre: String
+- precioAccion: int
+
+--
++ Empresa()
++ Empresa(nombre: String)
++ Empresa(nombre: String, precioAccion: int)
++ getPrecioAccion(): int
++ setPrecioAccion(precioAccion: int): void
++ getId(): Integer
++ setId(id: Integer): void
++ getNombre(): String
++ setNombre(nombre: String): void
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>266</x>
+      <y>1057</y>
+      <w>567</w>
+      <h>336</h>
+    </coordinates>
+    <panel_attributes>Acciones
+Package::co.edu.unbosque.proyecto.model
+
+--
+- id: Integer
+- idCliente: Integer
+- acciones: Integer
+- nombreEmpresa: String
+- fecha: Date
+- estado: String
+- valor: int
+
+--
++ Acciones()
++ Acciones(id: Integer, idCliente: Integer, acciones: Integer, nombreEmpresa: String, fecha: Date, estado: String, valor: int)
++ Acciones(idCliente: Integer, acciones: Integer, nombreEmpresa: String, fecha: Date, estado: String)
++ getValor(): int
++ setValor(valor: int): void
++ getFecha(): Date
++ setFecha(fecha: Date): void
++ getEstado(): String
++ setEstado(estado: String): void
++ getId(): Integer
++ setId(id: Integer): void
++ getIdCliente(): Integer
++ setIdCliente(idCliente: Integer): void
++ getAcciones(): Integer
++ setAcciones(acciones: Integer): void
++ getNombreEmpresa(): String
++ setNombreEmpresa(nombreEmpresa: String): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>112</x>
+      <y>574</y>
+      <w>1232</w>
+      <h>952</h>
+    </coordinates>
+    <panel_attributes>model
+--
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2541</x>
+      <y>1120</y>
+      <w>287</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>EmpresasRepository
+Package::co.edu.unbosque.proyecto.repository
+
+--
+
+--
+
++ findById(id: Integer): Optional&lt;Empresa&gt;
++ findAll(): List&lt;Empresa&gt;
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2926</x>
+      <y>980</y>
+      <w>287</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>MovimientoRepository
+Package::co.edu.unbosque.proyecto.repository
+
+--
+
+--
+
++ findById(id: Integer): Optional&lt;Movimiento&gt;
++ findAll(): List&lt;Movimiento&gt;
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2919</x>
+      <y>1120</y>
+      <w>287</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>UsuarioRepository
+Package::co.edu.unbosque.proyecto.repository
+
+--
+
+--
+
++ findById(id: Integer): Optional&lt;Usuario&gt;
++ findAll(): List&lt;Usuario&gt;
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>2499</x>
+      <y>903</y>
+      <w>742</w>
+      <h>364</h>
+    </coordinates>
+    <panel_attributes>repository
+--
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1554</x>
+      <y>1295</y>
+      <w>658</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>UsuarioController
+Package::co.edu.unbosque.proyecto.controller
+
+--
+- usrdao: UsuarioRepository
+- iniciar: ArrayList&lt;Usuario&gt;
+- variante: int
+--
++ add(nombre: String, email: String, contrasena: String): ResponseEntity&lt;Usuario&gt;
++ mostrarTodo(): ResponseEntity&lt;List&lt;Usuario&gt;&gt;
++ login(email: String, contrasena: String): ResponseEntity&lt;Usuario&gt;
++ inicio(): ResponseEntity&lt;Usuario&gt;
++ cerrar(): RedirectView
++ getExists(): ResponseEntity&lt;String&gt;
++ getOne(id: Integer): ResponseEntity&lt;Usuario&gt;
++ delete(id: Integer): ResponseEntity&lt;String&gt;
++ update(nombre: String, email: String, contrasena: String, id: Integer): ResponseEntity&lt;Boolean&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1561</x>
+      <y>1512</y>
+      <w>658</w>
+      <h>119</h>
+    </coordinates>
+    <panel_attributes>MovimientoController
+Package::co.edu.unbosque.proyecto.controller
+
+--
+- usrdao: MovimientoRepository
+- emprdao: EmpresasRepository
+--
++ add(nombreEmpresa: String, valor: int): ResponseEntity&lt;Boolean&gt;
++ mostrarTodo(): ResponseEntity&lt;List&lt;Movimiento&gt;&gt;
++ tendencia(): ResponseEntity&lt;List&lt;Tendencia&gt;&gt;
+- ordenarPorPromedioDescendente(tendencias: List&lt;Tendencia&gt;): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1554</x>
+      <y>1106</y>
+      <w>658</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>AccionesController
+Package::co.edu.unbosque.proyecto.controller
+
+--
+- usrdao: AccionesRepository 
+--
++ add(idCliente: Integer, acciones: Integer, nombreEmpresa: String, fecha: Date, estado: String, valor: int): ResponseEntity&lt;Boolean&gt;
++ mostrarTodo(): ResponseEntity&lt;List&lt;Acciones&gt;&gt;
++ mostrarHistorial(idCliente: Integer): ResponseEntity&lt;List&lt;Acciones&gt;&gt;
++ delete(id: Integer): ResponseEntity&lt;String&gt;
++ update(idCliente: Integer, acciones: Integer, nombreEmpresa: String, fecha: Date, estado: String, valor: int, id: Integer): ResponseEntity&lt;Boolean&gt;
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1673</x>
+      <y>959</y>
+      <w>392</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>EmpresaController
+Package::co.edu.unbosque.proyecto.controller
+
+--
+- usrdao: EmpresasRepository
+--
++ add(nombre: String, precioAccion: int): ResponseEntity&lt;Boolean&gt;
++ mostrarTodo(): ResponseEntity&lt;List&lt;Empresa&gt;&gt;
++ delete(id: Integer): ResponseEntity&lt;String&gt;
++ update(nombre: String, precioAccion: int, id: Integer): ResponseEntity&lt;Boolean&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>1540</x>
+      <y>889</y>
+      <w>707</w>
+      <h>777</h>
+    </coordinates>
+    <panel_attributes>controller
+--
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1617</x>
+      <y>350</y>
+      <w>259</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>ProyectoApplication   
+Package::co.edu.unbosque.proyecto
+
+--
+
+--
++ main(args: String[]): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1904</x>
+      <y>343</y>
+      <w>357</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>ServletInitializer
+Package::co.edu.unbosque.proyecto
+
+--
+
+--
++ configure(application: SpringApplicationBuilder): SpringApplicationBuilder</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>434</x>
+      <y>511</y>
+      <w>1449</w>
+      <h>455</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;260.0;10.0;10.0;2040.0;20.0;2050.0;630.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>560</x>
+      <y>1127</y>
+      <w>1008</w>
+      <h>560</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;380.0;10.0;780.0;1240.0;780.0;1230.0;10.0;1420.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1246</x>
+      <y>1267</y>
+      <w>322</w>
+      <h>119</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;350.0;20.0;350.0;150.0;440.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1246</x>
+      <y>924</y>
+      <w>329</w>
+      <h>651</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;280.0;10.0;290.0;910.0;450.0;910.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1246</x>
+      <y>700</y>
+      <w>329</w>
+      <h>896</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;290.0;10.0;310.0;1260.0;450.0;1260.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2058</x>
+      <y>1008</y>
+      <w>497</w>
+      <h>161</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>690.0;210.0;520.0;210.0;510.0;20.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2205</x>
+      <y>1008</y>
+      <w>343</w>
+      <h>189</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>470.0;10.0;320.0;10.0;330.0;250.0;10.0;240.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2205</x>
+      <y>1204</y>
+      <w>840</w>
+      <h>182</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>1170.0;10.0;1180.0;240.0;10.0;240.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2212</x>
+      <y>826</y>
+      <w>875</w>
+      <h>749</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>1230.0;220.0;1230.0;10.0;200.0;10.0;200.0;1050.0;10.0;1050.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2212</x>
+      <y>1190</y>
+      <w>343</w>
+      <h>357</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>470.0;10.0;350.0;10.0;370.0;490.0;10.0;490.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>0</x>
+      <y>35</y>
+      <w>3479</w>
+      <h>1778</h>
+    </coordinates>
+    <panel_attributes>src/main/java
+--
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>3654</x>
+      <y>42</y>
+      <w>623</w>
+      <h>847</h>
+    </coordinates>
+    <panel_attributes>src/test/java
+--
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3472</x>
+      <y>238</y>
+      <w>196</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;260.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>3682</x>
+      <y>273</y>
+      <w>217</w>
+      <h>161</h>
+    </coordinates>
+    <panel_attributes>AccionesControllerTest
+Package::co.edu.unbosque.proyecto
+
+--
+- accionesRepository: AccionesRepository
+- accionesController: AccionesController
+--
++ setUp(): void
++ testAdd(): void
++ testMostrarTodo(): void
++ testMostrarHistorial(): void
++ testDelete(): void
++ testUpdate(): void
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>3682</x>
+      <y>77</y>
+      <w>217</w>
+      <h>161</h>
+    </coordinates>
+    <panel_attributes>EmpresasControllerTest
+Package::co.edu.unbosque.proyecto
+
+--
+- empresasRepository: EmpresasRepository
+- empresasController: EmpresasController
+--
++ setUp(): void
++ testAdd(): void
++ testMostrarTodo(): void
++ testDelete(): void
++ testUpdate(): void
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>3913</x>
+      <y>77</y>
+      <w>350</w>
+      <h>147</h>
+    </coordinates>
+    <panel_attributes>MovimientoControllerTest
+Package::co.edu.unbosque.proyecto
+
+--
+- movimientoRepository: MovimientoRepository
+- empresasRepository: EmpresasRepository
+- movimientoController: MovimientoController
+--
++ setUp(): void
++ testAdd(): void
++ testMostrarTodo(): void
++ testTendencia(): void
++ testOrdenarPorPromedioDescendente(tendencias: List&lt;Tendencia&gt;): void
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>3955</x>
+      <y>273</y>
+      <w>217</w>
+      <h>161</h>
+    </coordinates>
+    <panel_attributes>UsuarioControllerTest
+Package::co.edu.unbosque.proyecto
+
+--
+- accionesRepository: AccionesRepository
+- accionesController: AccionesController
+--
++ setUp(): void
++ testAdd(): void
++ testMostrarTodo(): void
++ testMostrarHistorial(): void
++ testDelete(): void
++ testUpdate(): void
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

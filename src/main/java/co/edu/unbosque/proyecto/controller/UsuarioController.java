@@ -1,5 +1,6 @@
 package co.edu.unbosque.proyecto.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,12 +13,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.view.RedirectView;
 
-import co.edu.unbosque.proyecto.model.Empresa;
 import co.edu.unbosque.proyecto.model.Usuario;
 import co.edu.unbosque.proyecto.repository.UsuarioRepository;
 
@@ -27,13 +28,15 @@ import co.edu.unbosque.proyecto.repository.UsuarioRepository;
 public class UsuarioController {
 	@Autowired
 	private UsuarioRepository usrdao;
+	public ArrayList<Usuario> iniciar = new ArrayList<Usuario>();
+	public int variante = 0;
 
 	@PostMapping(path = "/usuario")
 	public ResponseEntity<Usuario> add(@RequestParam String nombre, @RequestParam String email,
 			@RequestParam String contrasena) {
 
 		List<Usuario> all = (List<Usuario>) usrdao.findAll();
-	
+
 		for (int i = 0; i < all.size(); i++) {
 			if (all.get(i).getNombre().equals(nombre) && all.get(i).getEmail().equals(email)
 					&& all.get(i).getContrasena().equals(contrasena)) {
@@ -41,13 +44,17 @@ public class UsuarioController {
 			}
 		}
 
-
 		Usuario uc = new Usuario();
 		uc.setNombre(nombre);
 		uc.setEmail(email);
 		uc.setContrasena(contrasena);
 		usrdao.save(uc);
-	
+
+		if (variante == 0) {
+			iniciar.add(uc);
+			variante++;
+		}
+
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(uc);
 	}
 
@@ -61,7 +68,6 @@ public class UsuarioController {
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(lista);
 	}
 
-
 	@GetMapping("/login")
 	public ResponseEntity<Usuario> login(@RequestParam String email, @RequestParam String contrasena) {
 		List<Usuario> all = (List<Usuario>) usrdao.findAll();
@@ -71,11 +77,19 @@ public class UsuarioController {
 		if (all.get(0).getEmail().equals(email) && all.get(0).getContrasena().equals(contrasena)) {
 			// admin
 			foundUsuario = all.get(0);
+			if (variante == 0) {
+				iniciar.add(foundUsuario);
+				variante++;
+			}
 		}
 
 		for (int i = 1; i < all.size(); i++) {
 			if (all.get(i).getEmail().equals(email) && all.get(i).getContrasena().equals(contrasena)) {
 				foundUsuario = all.get(i);
+				if (variante == 0) {
+					iniciar.add(foundUsuario);
+					variante++;
+				}
 				break;
 			}
 		}
@@ -87,13 +101,31 @@ public class UsuarioController {
 		}
 	}
 
+	@GetMapping("/inicio")
+	public ResponseEntity<Usuario> inicio() {
+
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(iniciar.get(0));
+
+	}
+
+	@GetMapping("/cerrar")
+	public RedirectView cerrar() {
+
+		iniciar.clear();
+		variante = 0;
+
+		String url = "http://localhost:8080/Frontend/login.html";
+		return new RedirectView(url);
+
+	}
+
 	@GetMapping("/usuarioExistentes")
 	public ResponseEntity<String> getExists() {
 		List<Usuario> all = (List<Usuario>) usrdao.findAll();
 		if (all.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.FOUND).body(null);
 		}
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(all.size() + "Cantidad de marikas");
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(all.size() +"");
 	}
 
 	@GetMapping("/usuario/{id}")
@@ -116,23 +148,28 @@ public class UsuarioController {
 	}
 
 	@PutMapping("/usuario/{id}")
-	public ResponseEntity<String> update(@RequestBody Usuario nuevo, @PathVariable Integer id) {
+	public ResponseEntity<Boolean> update(@RequestParam String nombre, @RequestParam String email,
+			@RequestParam String contrasena, @PathVariable Integer id) {
 
 		Optional<Usuario> op = usrdao.findById(id);
 		if (!op.isPresent()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("");
+			return ResponseEntity.ok(false);
 		}
 		return op.map(usr -> {
-			usr.setNombre(nuevo.getNombre());
-			usr.setEmail(nuevo.getEmail());
-			usr.setContrasena(nuevo.getContrasena());
+			usr.setNombre(nombre);
+			usr.setEmail(email);
+			usr.setContrasena(contrasena);
 
 			usrdao.save(usr);
-			return ResponseEntity.status(HttpStatus.ACCEPTED).body("Data updated");
+			return ResponseEntity.ok(true);
 		}).orElseGet(() -> {
+			Usuario nuevo = new Usuario();
 			nuevo.setId(id);
+			nuevo.setNombre(nombre);
+			nuevo.setEmail(email);
+			nuevo.setContrasena(contrasena);
 			usrdao.save(nuevo);
-			return ResponseEntity.status(HttpStatus.CREATED).body("Data created");
+			return ResponseEntity.ok(true);
 		});
 	}
 
