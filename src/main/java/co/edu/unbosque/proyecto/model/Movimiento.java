@@ -24,6 +24,12 @@ public class Movimiento {
 		this.valor = valor;
 	}
 
+	public Movimiento(String nombreEmpresa, int valor) {
+		super();
+		this.nombreEmpresa = nombreEmpresa;
+		this.valor = valor;
+	}
+
 	/**
 	 * @return the id
 	 */

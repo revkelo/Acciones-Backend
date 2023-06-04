@@ -28,8 +28,8 @@ import co.edu.unbosque.proyecto.repository.UsuarioRepository;
 public class UsuarioController {
 	@Autowired
 	private UsuarioRepository usrdao;
-	private ArrayList<Usuario> iniciar = new ArrayList<Usuario>();
-	private int variante = 0;
+	public ArrayList<Usuario> iniciar = new ArrayList<Usuario>();
+	public int variante = 0;
 
 	@PostMapping(path = "/usuario")
 	public ResponseEntity<Usuario> add(@RequestParam String nombre, @RequestParam String email,

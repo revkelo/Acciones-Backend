@@ -19,6 +19,25 @@ public class Empresa {
 	}
 
 	
+
+
+	public Empresa(String nombre) {
+		super();
+		this.nombre = nombre;
+	}
+
+
+
+
+	public Empresa(String nombre, int precioAccion) {
+		super();
+		this.nombre = nombre;
+		this.precioAccion = precioAccion;
+	}
+
+
+
+
 	/**
 	 * @return the precioAccion
 	 */

@@ -19,14 +19,22 @@ public class Acciones {
 	private String estado;
 	private int valor;
 
-
+	
 	public Acciones() {
 		// TODO Auto-generated constructor stub
 	}
+	public Acciones(Integer id, Integer idCliente, Integer acciones, String nombreEmpresa, Date fecha, String estado,
+			int valor) {
+		super();
+		this.id = id;
+		this.idCliente = idCliente;
+		this.acciones = acciones;
+		this.nombreEmpresa = nombreEmpresa;
+		this.fecha = fecha;
+		this.estado = estado;
+		this.valor = valor;
+	}
 
-
-	
-	
 	public Acciones(Integer idCliente, Integer acciones, String nombreEmpresa, Date fecha, String estado) {
 		super();
 		this.idCliente = idCliente;
@@ -36,18 +44,12 @@ public class Acciones {
 		this.estado = estado;
 	}
 
-
-
-
 	/**
 	 * @return the valor
 	 */
 	public int getValor() {
 		return valor;
 	}
-
-
-
 
 	/**
 	 * @param valor the valor to set
@@ -56,18 +58,12 @@ public class Acciones {
 		this.valor = valor;
 	}
 
-
-
-
 	/**
 	 * @return the fecha
 	 */
 	public Date getFecha() {
 		return fecha;
 	}
-
-
-
 
 	/**
 	 * @param fecha the fecha to set
@@ -76,18 +72,12 @@ public class Acciones {
 		this.fecha = fecha;
 	}
 
-
-
-
 	/**
 	 * @return the estado
 	 */
 	public String getEstado() {
 		return estado;
 	}
-
-
-
 
 	/**
 	 * @param estado the estado to set
@@ -96,16 +86,12 @@ public class Acciones {
 		this.estado = estado;
 	}
 
-
-
-
 	/**
 	 * @return the id
 	 */
 	public Integer getId() {
 		return id;
 	}
-
 
 	/**
 	 * @param id the id to set
@@ -114,14 +100,12 @@ public class Acciones {
 		this.id = id;
 	}
 
-
 	/**
 	 * @return the idCliente
 	 */
 	public Integer getIdCliente() {
 		return idCliente;
 	}
-
 
 	/**
 	 * @param idCliente the idCliente to set
@@ -130,19 +114,12 @@ public class Acciones {
 		this.idCliente = idCliente;
 	}
 
-
-
-
-
 	/**
 	 * @return the acciones
 	 */
 	public Integer getAcciones() {
 		return acciones;
 	}
-
-
-
 
 	/**
 	 * @param acciones the acciones to set
@@ -151,16 +128,12 @@ public class Acciones {
 		this.acciones = acciones;
 	}
 
-
-
-
 	/**
 	 * @return the nombreEmpresa
 	 */
 	public String getNombreEmpresa() {
 		return nombreEmpresa;
 	}
-
 
 	/**
 	 * @param nombreEmpresa the nombreEmpresa to set
@@ -169,7 +142,4 @@ public class Acciones {
 		this.nombreEmpresa = nombreEmpresa;
 	}
 
-
 }
-
- 
