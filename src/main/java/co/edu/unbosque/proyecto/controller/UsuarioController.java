@@ -125,7 +125,7 @@ public class UsuarioController {
 		if (all.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.FOUND).body(null);
 		}
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(all.size() + "Cantidad de marikas");
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(all.size() +"");
 	}
 
 	@GetMapping("/usuario/{id}")
