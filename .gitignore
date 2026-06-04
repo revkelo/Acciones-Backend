@@ -1,0 +1,20 @@
+# Maven
+target/
+*.class
+*.jar
+*.war
+
+# Variables de entorno
+.env
+*.env
+
+# IDE
+.idea/
+*.iml
+.eclipse/
+.settings/
+.project
+.classpath
+
+# Spring Boot secretos
+src/main/resources/application-local.properties
