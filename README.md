@@ -1,45 +1,86 @@
-# Acciones-Backend
+# Acciones Backend
 
-Este es un proyecto de backend desarrollado con Spring Boot para crear una aplicación web utilizando Java. Se ha diseñado para conectarse con un frontend también desarrollado en Java.
+API REST para un sistema de **gestión de acciones bursátiles** desarrollada con Spring Boot 3. Permite a usuarios comprar y vender acciones de empresas, registrar movimientos y consultar tendencias del mercado.
 
-## Requisitos previos
+Frontend correspondiente: [Acciones-Frontend](https://github.com/revkelo/Acciones-Frontend)
 
-Antes de comenzar a trabajar con este proyecto, asegúrate de tener instalados los siguientes componentes:
+---
 
-- Java Development Kit (JDK) 11 o superior
-- Apache Maven
-- Spring Boot
+## Funcionalidades
 
-## Configuración del proyecto
+- CRUD de **empresas** con su información bursátil
+- Registro de **acciones** por empresa
+- Registro de **movimientos** de compra/venta por usuario
+- Consulta de **tendencias** del mercado
+- Gestión de **usuarios** con roles
 
-1. Clona este repositorio en tu máquina local o descarga el código fuente.
-2. Abre el proyecto en tu entorno de desarrollo preferido.
+---
 
+## Stack
 
+| | |
+|--|--|
+| Framework | Spring Boot 3 |
+| Lenguaje | Java 17 |
+| Base de datos | MySQL 8 |
+| ORM | Spring Data JPA / Hibernate |
+| Testing | JUnit 5 |
+| Build | Maven |
 
-## Capturas de Pantalla
+---
+
+## Entidades
+
+| Entidad | Descripción |
+|---------|-------------|
+| `Empresa` | Empresa listada en bolsa |
+| `Acciones` | Acciones disponibles por empresa |
+| `Movimiento` | Transacciones de compra/venta |
+| `Tendencia` | Tendencia de precio por empresa |
+| `Usuario` | Usuario del sistema (inversionista/admin) |
+
+---
+
+## Endpoints principales
+
+| Método | Ruta | Descripción |
+|--------|------|-------------|
+| `GET/POST/PUT/DELETE` | `/api/empresas` | CRUD empresas |
+| `GET/POST/PUT/DELETE` | `/api/acciones` | CRUD acciones |
+| `GET/POST` | `/api/movimientos` | Registro y consulta de transacciones |
+| `GET` | `/api/tendencias` | Tendencias del mercado |
+| `GET/POST` | `/api/usuarios` | Gestión de usuarios |
+
+---
+
+## Instalación
+
+```bash
+git clone https://github.com/revkelo/Acciones-Backend.git
+cd Acciones-Backend
+cp src/main/resources/application.properties.example src/main/resources/application.properties
+# Editar application.properties con tus credenciales
+mvn spring-boot:run
+```
+
+**Variables de entorno requeridas:**
+
+```properties
+DB_URL=jdbc:mysql://localhost:3306/acciones_db
+DB_USERNAME=tu_usuario
+DB_PASSWORD=tu_password
+```
+
+---
+
+## Capturas
 
 <p align="center">
-    <img src="./img/1.PNG" width="800" />
-   <img src="./img/2.PNG" width="800" />
-    <img src="./img/3.PNG" width="800" />
-    <img src="./img/4.PNG" width="800" />
-
-
+  <img src="./img/1.PNG" width="700" />
+  <img src="./img/2.PNG" width="700" />
 </p>
 
+---
 
-## Tecnologías utilizadas
-
-Este proyecto de backend ha sido desarrollado utilizando las siguientes tecnologías:
-
-- Java
-- Spring Boot
-- MySQL (Base de datos relacional)
-- Hibernate (ORM - Mapeo objeto-relacional)
-- JUnit (Framework de pruebas unitarias)
-
-
-## Contacto
-
-Kevin Gonzalez- revkelo
+Proyecto grupal — Universidad El Bosque, 2023  
+**Kevin Gonzalez**
